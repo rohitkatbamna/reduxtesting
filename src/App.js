@@ -1,24 +1,24 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { counterReducers } from "./redux";
 
 function App() {
 	let eventvalue;
 	const counter = useSelector((state) => state.counter);
 	const toggleButton = useSelector((state) => state.toggleButton);
-	console.log(toggleButton);
 	const dispatch = useDispatch();
 	function increase() {
 		if (eventvalue === undefined) {
 			eventvalue = 1;
 		}
-		dispatch({ type: "increment", payload: eventvalue });
+		dispatch(counterReducers.increase(eventvalue));
 		document.getElementById("numberid").value = "";
 	}
 	function decrement() {
 		if (eventvalue === undefined) {
 			eventvalue = 1;
 		}
-		dispatch({ type: "decrement", payload: eventvalue });
+		dispatch(counterReducers.decrease(eventvalue));
 		document.getElementById("numberid2").value = "";
 	}
 	function handleInputinc(event) {
@@ -30,7 +30,7 @@ function App() {
 		console.log(eventvalue);
 	}
 	function toggleOn() {
-		dispatch({ type: "toggleIt" });
+		dispatch(counterReducers.toggleCon());
 	}
 	return (
 		<>
