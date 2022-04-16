@@ -2,13 +2,22 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 function App() {
+	let eventvalue;
 	const counter = useSelector((state) => state.counter);
 	const dispatch = useDispatch();
 	function increase() {
-		dispatch({ type: "increment", payload: 5 });
+		if (eventvalue === undefined) {
+			eventvalue = 1;
+		}
+		dispatch({ type: "increment", payload: eventvalue });
+		document.getElementById("numberid").value = "";
 	}
 	function decrement() {
 		dispatch({ type: "decrement", payload: 5 });
+	}
+	function handleInput(event) {
+		eventvalue = Number(event.target.value);
+		console.log(eventvalue);
 	}
 	return (
 		<>
@@ -19,12 +28,19 @@ function App() {
 					onClick={increase}>
 					Increment
 				</button>
+				<input
+					type="number"
+					style={{ width: "50px", marginRight: "10px" }}
+					onChange={handleInput}
+					id="numberid"
+				/>
 				<button
 					type="button"
-					className="btn btn-primary btn-lg"
+					className="btn btn-primary btn-lg me-2"
 					onClick={decrement}>
 					Decrement
 				</button>
+				<input type="text" style={{ width: "50px" }} />
 				<h1 className="mt-3">{counter}</h1>
 			</div>
 		</>
