@@ -15,9 +15,17 @@ function App() {
 		document.getElementById("numberid").value = "";
 	}
 	function decrement() {
-		dispatch({ type: "decrement", payload: 5 });
+		if (eventvalue === undefined) {
+			eventvalue = 1;
+		}
+		dispatch({ type: "decrement", payload: eventvalue });
+		document.getElementById("numberid2").value = "";
 	}
-	function handleInput(event) {
+	function handleInputinc(event) {
+		eventvalue = Number(event.target.value);
+		console.log(eventvalue);
+	}
+	function handleInputdec(event) {
 		eventvalue = Number(event.target.value);
 		console.log(eventvalue);
 	}
@@ -36,7 +44,7 @@ function App() {
 				<input
 					type="number"
 					style={{ width: "50px", marginRight: "10px" }}
-					onChange={handleInput}
+					onChange={handleInputinc}
 					id="numberid"
 				/>
 				<button
@@ -45,7 +53,12 @@ function App() {
 					onClick={decrement}>
 					Decrement
 				</button>
-				<input type="text" style={{ width: "50px" }} />
+				<input
+					type="number"
+					style={{ width: "50px" }}
+					onChange={handleInputdec}
+					id="numberid2"
+				/>
 				<h1
 					className="mt-3"
 					style={{ display: toggleButton ? "none" : "block" }}>
