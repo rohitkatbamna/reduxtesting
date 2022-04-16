@@ -5,10 +5,10 @@ function App() {
 	const counter = useSelector((state) => state.counter);
 	const dispatch = useDispatch();
 	function increase() {
-		dispatch({ type: "increment" });
+		dispatch({ type: "increment", payload: 5 });
 	}
 	function decrement() {
-		dispatch({ type: "decrement" });
+		dispatch({ type: "decrement", payload: 5 });
 	}
 	return (
 		<>
